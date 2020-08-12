@@ -6,24 +6,23 @@
       <mt-swipe-item>2</mt-swipe-item>-->
       <!-- 循环 将轮播图渲染  组件中用v-for 要用:key=-->
       <mt-swipe-item v-for="item in lunbotuList" :key="item.img">
-        <img :src="item.img" alt />
+        <img :src="item.img" alt=""/>
       </mt-swipe-item>
     </mt-swipe>
     <!-- mui九宫格--六宫格的改造 -->
     <div>
       <ul class="mui-table-view mui-grid-view mui-grid-9">
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-          <a href="#">
-            <img src="../../images/menu1.png" alt="">
-            <div class="mui-media-body">新闻资讯</div>
-          </a>
+          <router-link :to="{ path: '/home/newslist' }">
+              <img src="../../images/menu1.png" alt="">
+              <div class="mui-media-body">新闻资讯</div>
+          </router-link>
         </li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-          <a href="#">
+          <router-link to="/home/share">
             <img src="../../images/menu2.png" alt="">
-            </span>
             <div class="mui-media-body">图片分享</div>
-          </a>
+          </router-link>
         </li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
           <a href="#">
@@ -60,7 +59,7 @@ export default {
     return {
       // 用于保存 轮播图的数组
       //lunbotuList: [],
-       lunbotuList: [{img: '../../images/banner-1.jpg'},{img: '../../images/banner-2.jpg'},{img: '../../images/banner-3.jpg'}] // 假数据
+       lunbotuList: [{img: "./src/images/banner-1.jpg"},{img: "./src/images/banner-2.jpg"},{img: "./src/images/banner-3.jpg"}] // 假数据
     };
   },
   created() {
@@ -69,11 +68,11 @@ export default {
   methods: {
     getLunbotu() {
       // 请求 轮播图的api 获取轮播图
-      this.$http.get("http://vue.studyit.io/api/getlunbo").then((result) => {
+      this.$http.get("api/getlunbo").then((result) => {
         //console.log(result.body)
         if (result.body.status === 0) {
           // 获取成功
-          //this.lunbotuList = result.body.message;
+          this.lunbotuList = result.body.message;
         } else {
           Toast("获取加载轮播图失败....");
         }

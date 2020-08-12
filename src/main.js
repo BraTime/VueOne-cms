@@ -7,11 +7,21 @@ import VueRouter from "vue-router"
 // 1.2 安装路由
 Vue.use(VueRouter)
 
+// 导入时间 处理的插件
+import moment from 'moment';
+
+// 定义全局过滤器 ---- 日期格式  利用日期处理类库 npm i moment -S
+Vue.filter('dateFormat' , function(dataStr, patten="YYYY-MM-DD HH:mm:ss") {
+  return moment(dataStr).format(patten)
+})
+
 // 2.1 导入vue-resource
 import VueResource from "vue-resource"
 // 2.2 安装
 Vue.use(VueResource)
 
+// 全局配置路由地址 设置请求根路径
+Vue.http.options.root = 'http://vue.studyit.io'
 
 
 // 导入 mui的样式
@@ -23,11 +33,12 @@ import './lib/mui/css/icons-extra.css'
 
 
 // 按需导入 mint-ui 中的组件
-import { Header , Swipe , SwipeItem } from 'mint-ui';
+import { Header , Swipe , SwipeItem , Button} from 'mint-ui';
 // 注册 组件
 Vue.component(Header.name , Header)
 Vue.component(Swipe.name , Swipe)
 Vue.component(SwipeItem.name , SwipeItem)
+Vue.component(Button.name , Button)
 
 
 // 导入app 组件
