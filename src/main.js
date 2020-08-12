@@ -22,6 +22,8 @@ Vue.use(VueResource)
 
 // 全局配置路由地址 设置请求根路径
 Vue.http.options.root = 'http://vue.studyit.io'
+// 设置全局 post 提交时， 表单数据的储存格式---普通表单格式
+Vue.http.options.emulateJSON = true
 
 
 // 导入 mui的样式
@@ -33,7 +35,7 @@ import './lib/mui/css/icons-extra.css'
 
 
 // 按需导入 mint-ui 中的组件
-import { Header , Swipe , SwipeItem , Button} from 'mint-ui';
+import { Header , Swipe , SwipeItem , Button } from 'mint-ui';
 // 注册 组件
 Vue.component(Header.name , Header)
 Vue.component(Swipe.name , Swipe)
