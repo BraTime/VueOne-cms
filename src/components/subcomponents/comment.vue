@@ -92,7 +92,7 @@ export default {
       // this.content  提交的内容
       // { emulateJSON: true } 以普通表单形式提交
       this.$http
-        .post("api/postcomment/" + this.$router.params.id, {
+        .post("api/postcomment/" + this.$route.params.id, {
           content: this.content.trim(),
         })
         .then((result) => {

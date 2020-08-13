@@ -35,12 +35,23 @@ import './lib/mui/css/icons-extra.css'
 
 
 // 按需导入 mint-ui 中的组件
-import { Header , Swipe , SwipeItem , Button } from 'mint-ui';
-// 注册 组件
-Vue.component(Header.name , Header)
-Vue.component(Swipe.name , Swipe)
-Vue.component(SwipeItem.name , SwipeItem)
-Vue.component(Button.name , Button)
+// import { Header , Swipe , SwipeItem , Button , Lazyload } from 'mint-ui';
+// // 注册 组件
+// Vue.component(Header.name , Header);
+// Vue.component(Swipe.name , Swipe);
+// Vue.component(SwipeItem.name , SwipeItem);
+// Vue.component(Button.name , Button);
+// Vue.use(Lazyload);
+
+// 要使用 懒加载  要全部导入mint-ui组件
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
+
+// 安装图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 
 
 // 导入app 组件
