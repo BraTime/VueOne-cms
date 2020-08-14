@@ -1,7 +1,24 @@
 <template>
     <div class="goods-list">
         <!-- 假数据mockgoods  要真数据 更换为 goodslist -->
-        <div class="goods-item" v-for="item in mockgoods" :key="item.id">
+
+        <!-- 标签跳转 -->
+        <!-- <router-link class="goods-item" v-for="item in mockgoods" :key="item.id" :to="'/home/goodsinfo/' + item.id " tag="div">
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{item.title}}</h1>
+            <div class="info">
+                <p class="price">
+                    <span class="now">¥{{item.sell_price}}</span>
+                    <span class="old">¥{{item.market_price}}</span>
+                </p>
+                <p class="sell">
+                    <span>热卖中</span>
+                    <span>剩{{item.stock_quantity}}件</span>
+                </p>
+            </div>
+        </router-link>  -->
+        <!-- 编程式导航 -->
+        <div class="goods-item" v-for="item in mockgoods" :key="item.id" @click="goDetail(item.id)">
             <img :src="item.img_url" alt="">
             <h1 class="title">{{item.title}}</h1>
             <div class="info">
@@ -62,6 +79,11 @@ export default {
             // 页数 +1 再去获取新一页的数据
             this.pageindex++;
             this.getGoodsList();
+        },
+        // 编程式导航 跳转页面
+        goDetail(id) {
+            //console.log(this)
+            this.$router.push('/home/goodsinfo/' + id)
         }
     },
     

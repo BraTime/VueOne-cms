@@ -3,7 +3,7 @@
     <h3>发表评论</h3>
     <hr />
     <textarea placeholder="请输入内容(不超过120字)" maxlength="120" v-model="content"></textarea>
-    <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
+    <mt-button type="primary" size="large" @click="postComment" class="btn_1">发表评论</mt-button>
     <!-- 评论内容列表 -->
     <div class="cmt-list">
       <!-- 使用假数据 -->
@@ -34,6 +34,7 @@
 import { Toast } from "mint-ui";
 
 export default {
+  props: ["id"],
   data() {
     return {
       content: "", // 评论框输入的内容
@@ -110,8 +111,7 @@ export default {
 
         
     }
-  },
-  props: ["id"],
+  }
 };
 </script>
 
@@ -125,6 +125,9 @@ export default {
     font-size: 14px;
     height: 85px;
     margin: 0;
+  }
+  .btn_1 {
+    margin-bottom: 6px;
   }
   .cmt-list {
     .cmt-item {

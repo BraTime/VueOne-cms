@@ -1,14 +1,9 @@
 <template>
   <div>
     <!-- 这是轮播图区域 -->
-    <mt-swipe :auto="4000">
-      <!-- <mt-swipe-item>1</mt-swipe-item>
-      <mt-swipe-item>2</mt-swipe-item>-->
-      <!-- 循环 将轮播图渲染  组件中用v-for 要用:key=-->
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.img">
-        <img :src="item.img" alt=""/>
-      </mt-swipe-item>
-    </mt-swipe>
+      <!-- 将数据由属性lunbotuList 传给轮播图子组件-->
+      <!-- isFull属性 控制图片是否 宽度100%- -->
+      <swiper :lunbotuList="lunbotuList" :isFull="true"></swiper>
     <!-- mui九宫格--六宫格的改造 -->
     <div>
       <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -56,13 +51,16 @@
 <script>
 
 import { Toast } from "mint-ui";
+// 导入 轮播图 子组件
+import swiper from "../subcomponents/swiper.vue"
 
 export default {
   data() {
     return {
-      // 用于保存 轮播图的数组
-      //lunbotuList: [],
-       lunbotuList: [{img: "./src/images/banner-1.jpg"},{img: "./src/images/banner-2.jpg"},{img: "./src/images/banner-3.jpg"}] // 假数据
+      // 用于保存 轮播图的数组 真数据
+      list: [],
+      // 假数据
+       lunbotuList: [{img: "./src/images/banner-1.jpg"},{img: "./src/images/banner-2.jpg"},{img: "./src/images/banner-3.jpg"}] 
     };
   },
   created() {
@@ -75,41 +73,23 @@ export default {
         //console.log(result.body)
         if (result.body.status === 0) {
           // 获取成功
-          this.lunbotuList = result.body.message;
+          this.list = result.body.message;
         } else {
           Toast("获取加载轮播图失败....");
         }
       });
     },
   },
+  components: {
+    swiper: swiper
+  }
+
 };
 </script>
 
 <style lang="less" scoped>
-// 轮播图
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-color: red;
-    }
-    &:nth-child(2) {
-      background-color: rgb(9, 97, 156);
-    }
-    &:nth-child(3) {
-      background-color: rgb(255, 166, 0);
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .mint-swipe-indicators {
-    .mint-swipe-indicator.is-active {
-      opacity: 1;
-    }
-  }
-}
+
+// 九宫格样式
 .mui-grid-view.mui-grid-9 {
     background-color: #fff;
     border: none;
