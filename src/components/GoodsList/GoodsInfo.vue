@@ -142,6 +142,18 @@ export default {
     // 点击加入购物车 小球效果
     addToShopCar() {
         this.ballFlag = !this.ballFlag;
+        // 得一对象 {id:商品id,count:数量 , price:单价 , selected: 是否选中}
+        // 将这个对象保存到 store 中的 car 数组里的 商品信息对象
+        // price: this.goodsinfo.sell_price 是真数据 
+        var goodsinfo = {
+          id: this.id ,
+          count:this.selectdCount ,
+          price:this.mackinfo.sell_price, // 这里api失效只能用假数据
+          selected: true // selected默认 true 选中
+        } 
+
+        // 调用 store 中的 mutations 来
+        this.$store.commit("addToCar" , goodsinfo)
     },
     // 做半场动画 使用钩子函数
     beforeEnter(el) {
@@ -150,7 +162,7 @@ export default {
     },
     enter(el , done) {
         el.offsetWidth; // 不写不出动画效果
-        console.log(this.$refs)
+        //console.log(this.$refs)
         // 获取小球 在页面中的坐标
         const ballPosition = this.$refs.ball.getBoundingClientRect();
         // 获取购物车上数量图标 在页面中的坐标
@@ -173,11 +185,11 @@ export default {
     getSelectCount(count) {
         // 子组件调用此方法 把选中的值 以实参传入 再保存给父组件中的 selectdCount
         this.selectdCount = count;
-        //console.log(this.selectdCount)
+        // console.log(this.selectdCount)
     },
     
   },
-  components: {
+  components: { // 挂载子组件
     swiper: swiper,
     numbox: numbox,
   },
