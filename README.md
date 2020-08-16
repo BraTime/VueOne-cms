@@ -1,20 +1,21 @@
 # 这是一个VUE项目
 
-## API或许已经失效
+## 一、使用
+### 1、npm i (安装依赖)
+### 2、npm run dev （开发运行）
+### 3、webpack （打包-dist目录下）
 
-### .gitignore文件中存放的是项目托管时，可忽略的文件
+## 二、API或许已经失效
 
-#### LICENSE 文件是开源协议
+### 1、本项目使用假数据 ，若要用真数据 替换有效的api接口即可 ， 并在组件的template中替换接收真数据的变量名
+### 2、假数据中的图片使用地址为 ./src/image(开发阶段)  打包后在dist文件下打开index.html文件图片地址会失效 更换为../src/images即可
+### 3、真数据中的图片是在服务器上，不存在此问题
 
-## 【开源协议直接的区别】：(https://www.zhihu.com/question/19568896)
+## 三、其他
+### 1、 .gitignore文件中存放的是项目托管时，可忽略的文件
 
+### 2、LICENSE 文件是开源协议
 
-## git 使用
-### 写入git 仓库  之后这个文件夹的修改都会被git记录($ git init)
+### 3、【开源协议直接的区别】：(https://www.zhihu.com/question/19568896)
 
-
-## 用传统方式(命令行) 把修改后的代码提交到仓库中
-1、git add . 
-2. git commit -m "提交信息"
-3. git push
 
