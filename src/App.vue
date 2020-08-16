@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 顶部  header 区域 ---mint-ui 中的Header组件 -->
-    <mt-header fixed title="Vue项目-练习"></mt-header>
+    <mt-header fixed title="Vue项目-练习">
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- 中间 路由区域 router-view 区域 -->
     <transition>
@@ -34,7 +38,29 @@
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      flag: true
+    }
+  },
+  created() {
+    //console.log(this.$route.path)
+    this.$route.path == '/home' ? this.flag = false : this.flag = true;
+  },
+  methods: {
+    // 后退
+    goBack() {
+      this.$router.go(-1);  
+    }
+  },
+  // 监听url地址 当在首页 隐藏返回按钮
+  watch: {
+    "$route.path": function() {
+      this.$route.path == '/home' ? this.flag = false : this.flag = true;
+    }
+  },
+}
 
 
 </script>

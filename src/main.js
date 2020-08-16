@@ -109,6 +109,19 @@ var store = new Vuex.Store({
       })
       return o;
     },
+    // 获取购物车中选中商品总量和总价
+    getSelectedCountAndTotal(state) {
+      // {count: 总量 ， total: 总价}
+      var o = {count: 0 , total: 0};
+      state.car.forEach(item => {
+        // 如果选中
+        if(item.selected) {
+          o.count += item.count;
+          o.total += item.count*item.price;
+        }
+      })
+      return o;
+    }
    
   }
 })
